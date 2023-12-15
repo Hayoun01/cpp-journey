@@ -10,7 +10,7 @@ struct MovieDB
     double rating;
 };
 
-void addMovie(vector<MovieDB> &movies);
+void addMovies(vector<MovieDB> &movies);
 void listMovies(vector<MovieDB> &movies);
 
 int main(void)
@@ -25,7 +25,7 @@ int main(void)
         choice = tolower(choice);
         cin.ignore();
         if (choice == 'a')
-            addMovie(movies);
+            addMovies(movies);
         else if (choice == 'l')
             listMovies(movies);
         else
@@ -34,7 +34,7 @@ int main(void)
     return 0;
 }
 
-void addMovie(vector<MovieDB> &movies)
+void addMovies(vector<MovieDB> &movies)
 {
     MovieDB movie;
     cout << "Please enter the title: ";
