@@ -12,8 +12,8 @@ struct instruction
     bool visited = 0;
 };
 
-void procFile(string fileName, vector<instruction> &instructions);
-void run(vector<instruction> &instructions);
+void procFile(string fileName, vector<instruction>& instructions);
+void run(vector<instruction>& instructions);
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
     return 0;
 }
 
-void procFile(string fileName, vector<instruction> &instructions)
+void procFile(string fileName, vector<instruction>& instructions)
 {
     ifstream in;
     in.open(fileName);
@@ -57,9 +57,24 @@ void procFile(string fileName, vector<instruction> &instructions)
     in.close();
 }
 
-void run(vector<instruction> &instructions)
+void run(vector<instruction>& instructions)
 {
-    for (int i = 0; 1; i++)
+    int acc = 0;
+    bool start = 0;
+    for (int i = 0;; i++)
     {
+        if (instructions.at(i).visited)
+        {
+            cout << acc << endl;
+            break;
         }
+        if (start)
+            instructions.at(i).visited = 1;
+        else
+            start = 1;
+        if (instructions.at(i).inst == "acc")
+            acc += instructions.at(i).value;
+        else if (instructions.at(i).inst == "jmp")
+            i += instructions.at(i).value - 1;
+    }
 }
